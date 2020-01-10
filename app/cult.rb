@@ -24,8 +24,7 @@ class Cult
     end
 
     def recruit_follower(follower)
-        #creates a new bloodoath
-        follower.cult = self 
+        Bloodoath.new(2020,follower,self)
     end
 
 

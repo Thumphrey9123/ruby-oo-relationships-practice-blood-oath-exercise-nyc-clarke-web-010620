@@ -20,10 +20,24 @@ class Follower
 
     
     def join_cult(cult)
-        #creates a new bloodoath
-        cult.follower = self 
+        Bloodoath.new(2020,self,cult)
+    end
+
+    def cults
+        cults = []
+        Bloodoath.all.each do |bloodoath| 
+            if bloodoath.follower == self
+                cults << bloodoath.cult
+            end
+        end
+        cults
     end
     
+    def my_cults_slogans
+        cults_arr = []
+        cults.each{|cult| cults_arr << cult.slogan}
+        cults_arr
+    end
     
     
     def self.of_a_certain_age(age_num)
