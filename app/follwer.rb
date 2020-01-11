@@ -56,6 +56,16 @@ class Follower
     #     self.all.select {|cult| cult.founding_year == founding_year_string}
     # end
     
+    def self.most_active_cultist
+        follower_arr = Bloodoath.all.map{|bloodoath| bloodoath.follower}
+        # follower_hash = follower_arr.reduce(Hash.new(0)) {|hash, follower| hash[follower] += 1; hash}
+        follower_arr.max_by {|cultist| follower_arr.count(cultist)}
+    end
 
+    def self.top_ten_followers
+        follower_arr = Bloodoath.all.map{|bloodoath| bloodoath.follower}
+        follower_hash = follower_arr.reduce(Hash.new(0)) {|hash, follower| hash[follower] += 1; hash}
+        #now need to find out how to get the top ten most freuent....
+    end
 
 end

@@ -56,7 +56,7 @@ class Cult
         population.each do|follower| 
             age_arr << follower.age
         end
-        age_arr.inject{|sum, num| sum + num}.to_f / age_arr.length
+        age_arr.reduce{|sum, num| sum + num}.to_f / age_arr.length
     end
 
     def my_followers_mottos
@@ -73,11 +73,13 @@ class Cult
     end
 
     def self.most_popular_location
-        locations_array = []
-        self.all.each {|cult|locations_array << cult.location}
+        location_arr = self.all.map {|cult| cult.location}
+        most_common = location_arr.max_by {|location| location_arr.count(location)}
+        # locations_array = []
+        # self.all.each {|cult|locations_array << cult.location}
 
-        location_hash = locations_array.inject(Hash.new(0)) {|hash, location| hash[location] += 1; hash}
-        locations_array.max_by {|location| location_hash[location]}
+        # location_hash = locations_array.reduce(Hash.new(0)) {|hash, location| hash[location] += 1; hash}
+        # locations_array.max_by {|location| location_hash[location]}
 
     end
 
